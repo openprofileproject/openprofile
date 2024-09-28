@@ -1,5 +1,5 @@
-document.getElementById('profileForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+document.getElementById('profileForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
     const name = document.getElementById('name').value;
     const surname = document.getElementById('surname').value;
@@ -14,15 +14,18 @@ document.getElementById('profileForm').addEventListener('submit', function (e) {
     const youtube = document.getElementById('youtube').value;
     const theme = document.getElementById('theme').value;
 
-    const apiUrl = `https://generate.openprofile.us.to/api?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}&gender=${encodeURIComponent(gender)}&email=${encodeURIComponent(email)}&phonenum=${encodeURIComponent(phonenum)}&website=${encodeURIComponent(website)}&github=${encodeURIComponent(github)}&twitter=${encodeURIComponent(twitter)}&instagram=${encodeURIComponent(instagram)}&facebook=${encodeURIComponent(facebook)}&youtube=${encodeURIComponent(youtube)}&theme=${encodeURIComponent(theme)}`;
+    const baseUrl = 'https://generate.openprofile.us.to/api';
+    const urlParams = `?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}&gender=${encodeURIComponent(gender)}&email=${encodeURIComponent(email)}&phonenum=${encodeURIComponent(phonenum)}&website=${encodeURIComponent(website)}&github=${encodeURIComponent(github)}&twitter=${encodeURIComponent(twitter)}&instagram=${encodeURIComponent(instagram)}&facebook=${encodeURIComponent(facebook)}&youtube=${encodeURIComponent(youtube)}&theme=${encodeURIComponent(theme)}`;
 
-    document.getElementById('profileCard').src = apiUrl;
-
-    const markdownLink = `![OpenProfile]( ${apiUrl} )`;
-    const htmlLink = `<img src="${apiUrl}" alt="OpenProfile">`;
+    const apiUrl = `${baseUrl}${urlParams}`;
+    const markdownLink = `![OpenProfile Card](${apiUrl})`;
+    const htmlLink = `<img src="${apiUrl}" alt="OpenProfile Card">`;
     const bbcodeLink = `[img]${apiUrl}[/img]`;
 
-    document.getElementById('markdown').innerText = `Markdown: ${markdownLink}`;
-    document.getElementById('html').innerText = `HTML: ${htmlLink}`;
-    document.getElementById('bbcode').innerText = `BBCode: ${bbcodeLink}`;
+    document.getElementById('generatedLinks').innerHTML = `
+        <p><strong>API URL:</strong> <a href="${apiUrl}" target="_blank">${apiUrl}</a></p>
+        <p><strong>Markdown:</strong> <code>${markdownLink}</code></p>
+        <p><strong>HTML:</strong> <code>${htmlLink}</code></p>
+        <p><strong>BBCode:</strong> <code>${bbcodeLink}</code></p>
+    `;
 });
