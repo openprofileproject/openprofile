@@ -5,24 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate OpenProfile Card</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMA6jA7cYf7m6hL5z5t/njA3qO5vY1xTyv1D2n" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4C+sE7qylT+cWgIDJWIsHEwJ9E0tqh9+o2UetgA4CZXpfREI2czf+EzW59e6B5mYV0lFg==" crossorigin="anonymous" />
 </head>
 <body>
     <h1>Generate Your OpenProfile Card</h1>
-    <form id="profileForm">
-        <label for="name"><i class="fas fa-user"></i> Name: </label><input type="text" id="name" name="name"><br>
-        <label for="surname"><i class="fas fa-user"></i> Surname: </label><input type="text" id="surname" name="surname"><br>
-        <label for="gender"><i class="fas fa-venus-mars"></i> Gender: </label><input type="text" id="gender" name="gender"><br>
-        <label for="email"><i class="fas fa-envelope"></i> Email: </label><input type="text" id="email" name="email"><br>
-        <label for="phonenum"><i class="fas fa-phone"></i> Phone Number: </label><input type="text" id="phonenum" name="phonenum"><br>
-        <label for="website"><i class="fas fa-globe"></i> Website: </label><input type="text" id="website" name="website"><br>
-        <label for="github"><i class="fab fa-github"></i> GitHub: </label><input type="text" id="github" name="github"><br>
-        <label for="twitter"><i class="fab fa-twitter"></i> Twitter: </label><input type="text" id="twitter" name="twitter"><br>
-        <label for="instagram"><i class="fab fa-instagram"></i> Instagram: </label><input type="text" id="instagram" name="instagram"><br>
-        <label for="facebook"><i class="fab fa-facebook"></i> Facebook: </label><input type="text" id="facebook" name="facebook"><br>
-        <label for="youtube"><i class="fab fa-youtube"></i> YouTube: </label><input type="text" id="youtube" name="youtube"><br>
 
-        <label for="theme">Theme: </label>
+    <form id="profileForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname"><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="phonenum">Phone Number:</label>
+        <input type="text" id="phonenum" name="phonenum"><br><br>
+
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website"><br><br>
+
+        <label for="github">GitHub:</label>
+        <input type="url" id="github" name="github"><br><br>
+
+        <label for="twitter">Twitter:</label>
+        <input type="url" id="twitter" name="twitter"><br><br>
+
+        <label for="instagram">Instagram:</label>
+        <input type="url" id="instagram" name="instagram"><br><br>
+
+        <label for="facebook">Facebook:</label>
+        <input type="url" id="facebook" name="facebook"><br><br>
+
+        <label for="youtube">YouTube:</label>
+        <input type="url" id="youtube" name="youtube"><br><br>
+
+        <label for="theme">Theme:</label>
         <select id="theme" name="theme">
             <option value="light">Light</option>
             <option value="dark">Dark</option>
@@ -31,18 +53,12 @@
             <option value="rainbow">Rainbow</option>
         </select><br><br>
 
-        <button type="submit" id="generateButton">Generate Card</button>
+        <button type="submit">Generate Card</button>
     </form>
 
-    <h2>Generated OpenProfile Card</h2>
-    <img id="profileCard" alt="Your OpenProfile card will appear here">
+    <h3>Generated Links</h3>
+    <div id="generatedLinks"></div>
 
-    <h3>Links</h3>
-    <p id="markdown"></p>
-    <p id="html"></p>
-    <p id="bbcode"></p>
-
-    <!-- Link the external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
