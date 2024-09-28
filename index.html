@@ -3,38 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMA6jA7cYf7m6hL5z5t/njA3qO5vY1xTyv1D2n" crossorigin="anonymous">
-    <title>OpenProfile Card Generator</title>
+    <title>Generate OpenProfile Card</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMA6jA7cYf7m6hL5z5t/njA3qO5vY1xTyv1D2n" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h1>OpenProfile Card Generator</h1>
-        <form id="profileForm">
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="text" id="surname" placeholder="Surname" required>
-            <input type="text" id="gender" placeholder="Gender" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="text" id="phonenum" placeholder="Phone Number" required>
-            <input type="text" id="website" placeholder="Website" required>
-            <input type="text" id="github" placeholder="GitHub" required>
-            <input type="text" id="twitter" placeholder="Twitter" required>
-            <input type="text" id="instagram" placeholder="Instagram" required>
-            <input type="text" id="facebook" placeholder="Facebook" required>
-            <input type="text" id="youtube" placeholder="YouTube" required>
-            <select id="themeSelector">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="github">GitHub</option>
-                <option value="discord">Discord</option>
-                <option value="rainbow">Rainbow</option>
-            </select>
-            <button type="submit">Generate Card</button>
-        </form>
-        
-        <div id="output" class="output"></div>
-    </div>
+    <h1>Generate Your OpenProfile Card</h1>
+    <form id="profileForm">
+        <label for="name"><i class="fas fa-user"></i> Name: </label><input type="text" id="name" name="name"><br>
+        <label for="surname"><i class="fas fa-user"></i> Surname: </label><input type="text" id="surname" name="surname"><br>
+        <label for="gender"><i class="fas fa-venus-mars"></i> Gender: </label><input type="text" id="gender" name="gender"><br>
+        <label for="email"><i class="fas fa-envelope"></i> Email: </label><input type="text" id="email" name="email"><br>
+        <label for="phonenum"><i class="fas fa-phone"></i> Phone Number: </label><input type="text" id="phonenum" name="phonenum"><br>
+        <label for="website"><i class="fas fa-globe"></i> Website: </label><input type="text" id="website" name="website"><br>
+        <label for="github"><i class="fab fa-github"></i> GitHub: </label><input type="text" id="github" name="github"><br>
+        <label for="twitter"><i class="fab fa-twitter"></i> Twitter: </label><input type="text" id="twitter" name="twitter"><br>
+        <label for="instagram"><i class="fab fa-instagram"></i> Instagram: </label><input type="text" id="instagram" name="instagram"><br>
+        <label for="facebook"><i class="fab fa-facebook"></i> Facebook: </label><input type="text" id="facebook" name="facebook"><br>
+        <label for="youtube"><i class="fab fa-youtube"></i> YouTube: </label><input type="text" id="youtube" name="youtube"><br>
+
+        <label for="theme">Theme: </label>
+        <select id="theme" name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="github">GitHub</option>
+            <option value="discord">Discord</option>
+            <option value="rainbow">Rainbow</option>
+        </select><br><br>
+
+        <button type="submit" id="generateButton">Generate Card</button>
+    </form>
+
+    <h2>Generated OpenProfile Card</h2>
+    <img id="profileCard" alt="Your OpenProfile card will appear here">
+
+    <h3>Links</h3>
+    <p id="markdown"></p>
+    <p id="html"></p>
+    <p id="bbcode"></p>
+
+    <!-- Link the external JavaScript file -->
     <script src="script.js"></script>
-    <script src="themes.js"></script>
 </body>
 </html>
