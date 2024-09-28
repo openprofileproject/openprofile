@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMA6jA7cYf7m6hL5z5t/njA3qO5vY1xTyv1D2n" crossorigin="anonymous">
+    <title>OpenProfile Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>OpenProfile Card Generator</h1>
+        <form id="profileForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="surname" placeholder="Surname" required>
+            <input type="text" id="gender" placeholder="Gender" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phonenum" placeholder="Phone Number" required>
+            <input type="text" id="website" placeholder="Website" required>
+            <input type="text" id="github" placeholder="GitHub" required>
+            <input type="text" id="twitter" placeholder="Twitter" required>
+            <input type="text" id="instagram" placeholder="Instagram" required>
+            <input type="text" id="facebook" placeholder="Facebook" required>
+            <input type="text" id="youtube" placeholder="YouTube" required>
+            <select id="themeSelector">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="github">GitHub</option>
+                <option value="discord">Discord</option>
+                <option value="rainbow">Rainbow</option>
+            </select>
+            <button type="submit">Generate Card</button>
+        </form>
+        
+        <div id="output" class="output"></div>
+    </div>
+    <script src="script.js"></script>
+    <script src="themes.js"></script>
+</body>
+</html>
