@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+}
+
+button {
+    padding: 10px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0d47a1;
+}
+
+.profile {
+    border: 1px solid #444;
+    padding: 20px;
+    margin: auto;
+    max-width: 600px;
+    background-color: #1a1a1a;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profile-item i {
+    margin-right: 10px;
+}
