@@ -1,8 +1,5 @@
 const { createCanvas, registerFont } = require('canvas');
 
-// Optionally register custom fonts
-// registerFont('path/to/font.ttf', { family: 'Your Font Family' });
-
 exports.handler = async (event, context) => {
     const { 
         name, 
