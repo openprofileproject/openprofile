@@ -19,8 +19,8 @@ function loadProfile(userId) {
 
         const iconMap = {
             name: 'fas fa-user',
-            surname: 'fas fa-user-tag',
-            pronouns: 'fas fa-user-check',
+            surname: 'fas fa-user-check',
+            pronouns: 'fas fa-user-tag',
             gender: 'fas fa-venus-mars',
             email: 'fas fa-envelope',
             phone: 'fas fa-phone',
