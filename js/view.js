@@ -7,6 +7,7 @@ function loadProfile(userId) {
         const iconClass = {
             name: 'fas fa-user',
             surname: 'fas fa-user-tag',
+            pronouns: 'fas fa-user-check',
             gender: 'fas fa-venus-mars',
             email: 'fas fa-envelope',
             phone: 'fas fa-phone',
@@ -28,20 +29,3 @@ function loadProfile(userId) {
         }
     }
 }
-
-// Check if User ID is present in the URL
-const params = new URLSearchParams(window.location.search);
-let userId = params.get('user_id');
-
-// If no User ID, show input box to enter one
-if (!userId) {
-    const profileInfo = document.getElementById('profile-info');
-    profileInfo.innerHTML = `
-        <div class="user-id-prompt">
-            <label for="user-id-input">Enter User ID:</label>
-            <input type="text" id="user-id-input" placeholder="User ID">
-            <button id="load-profile-btn">Load Profile</button>
-        </div>
-    `;
-
-  
