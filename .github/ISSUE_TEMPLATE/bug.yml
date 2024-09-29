@@ -23,10 +23,10 @@ body:
       value: |
         1. Describe the first step to reproduce the bug
         2. Describe the second step
-        3. Continue until the bug is reproducable.
+        3. Continue until we can reproduce the bug.
     validations:
       required: true
-  - type: input
+  - type: textarea
     id: expected
     attributes:
       label: Expected behavior
@@ -34,7 +34,7 @@ body:
       placeholder: ex. The card should generate and display.
     validations:
       required: true
-  - type: input
+  - type: textarea
     id: happened
     attributes:
       label: Actual behavior
