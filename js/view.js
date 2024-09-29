@@ -1,59 +1,47 @@
-const params = new URLSearchParams(window.location.search);
-const userId = params.get('user_id');
-
-if (userId) {
-    const decodedData = JSON.parse(decodeBase62(userId)); // Base62 decode
+function loadProfile(userId) {
+    const decodedData = decodeProfileData(userId); // Base62 decode
     const profileInfo = document.getElementById('profile-info');
 
-    // Mapping for shortened keys
-    const keyMap = {
-        n: 'Name',
-        s: 'Surname',
-        g: 'Gender',
-        e: 'Email',
-        p: 'Phone',
-        w: 'Website',
-        gh: 'GitHub',
-        ig: 'Instagram',
-        tw: 'Twitter',
-        fb: 'Facebook',
-        yt: 'YouTube'
-    };
-
+    profileInfo.innerHTML = ''; // Clear any previous profile data
     for (const [key, value] of Object.entries(decodedData)) {
         const iconClass = {
-            n: 'fas fa-user',
-            s: 'fas fa-user-tag',
-            g: 'fas fa-venus-mars',
-            e: 'fas fa-envelope',
-            p: 'fas fa-phone',
-            w: 'fas fa-globe',
-            gh: 'fab fa-github',
-            ig: 'fab fa-instagram',
-            tw: 'fab fa-twitter',
-            fb: 'fab fa-facebook',
-            yt: 'fab fa-youtube'
+            name: 'fas fa-user',
+            surname: 'fas fa-user-tag',
+            gender: 'fas fa-venus-mars',
+            email: 'fas fa-envelope',
+            phone: 'fas fa-phone',
+            website: 'fas fa-globe',
+            github: 'fab fa-github',
+            instagram: 'fab fa-instagram',
+            twitter: 'fab fa-twitter',
+            facebook: 'fab fa-facebook',
+            youtube: 'fab fa-youtube'
         }[key];
 
         if (value) {
             profileInfo.innerHTML += `
                 <div class="profile-item">
                     <i class="${iconClass}"></i>
-                    <span>${keyMap[key]}: ${value}</span>
+                    <span>${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}</span>
                 </div>
             `;
         }
     }
-} else {
-    document.getElementById('profile-info').innerHTML = '<p>No user ID provided.</p>';
 }
 
-// Base62 decoding function
-function decodeBase62(str) {
-    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let num = BigInt(0);
-    for (let char of str) {
-        num = num * 62n + BigInt(chars.indexOf(char));
-    }
-    return Buffer.from(num.toString(16), 'hex').toString('utf8');
-}
+// Check if User ID is present in the URL
+const params = new URLSearchParams(window.location.search);
+let userId = params.get('user_id');
+
+// If no User ID, show input box to enter one
+if (!userId) {
+    const profileInfo = document.getElementById('profile-info');
+    profileInfo.innerHTML = `
+        <div class="user-id-prompt">
+            <label for="user-id-input">Enter User ID:</label>
+            <input type="text" id="user-id-input" placeholder="User ID">
+            <button id="load-profile-btn">Load Profile</button>
+        </div>
+    `;
+
+  
