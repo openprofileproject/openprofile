@@ -19,17 +19,21 @@ function loadProfile(userId) {
 
         const iconMap = {
             name: 'fas fa-user',
-            surname: 'fas fa-user-tag',
-            pronouns: 'fas fa-user-check',
+            surname: 'fas fa-user-check',
+            pronouns: 'fas fa-user-tag',
             gender: 'fas fa-venus-mars',
             email: 'fas fa-envelope',
             phone: 'fas fa-phone',
             website: 'fas fa-globe',
-            github: 'fab fa-github',
+            GitHub: 'fab fa-github',
+            GitLab: 'fab fa-gitlab',
+            git: 'fab fa-git',
+            StackOverflow: 'fab fa-stack-overflow',
+            discord: 'fab fa-discord',
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
             facebook: 'fab fa-facebook',
-            youtube: 'fab fa-youtube'
+            YouTube: 'fab fa-youtube'
         };
 
         for (const [key, value] of Object.entries(decodedData)) {
