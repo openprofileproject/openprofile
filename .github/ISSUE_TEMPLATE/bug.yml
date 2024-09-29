@@ -1,0 +1,71 @@
+name: Bug Report
+description: File a bug report
+labels: ["bug"]
+assignees: sctech-tr
+title: "[BUG] <title>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking your time to file a bug report! Please answer all questions clearly.
+  - type: textarea
+    id: desc
+    attributes:
+      label: Bug description
+      description: Provide a clear and concise description of the bug you encountered.
+      placeholder: ex. The "Generate Card" button does not respond when clicked.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Specify the FontAwesome icon you want to associate with this field. Starts with 'fas' for normal icons, and 'fab' for brand icons.
+      value: |
+        1. Describe the first step to reproduce the bug
+        2. Describe the second step
+        3. Continue until the bug is reproducable.
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Describe what you expected to happen.
+      placeholder: ex. The card should generate and display.
+    validations:
+      required: true
+  - type: input
+    id: happened
+    attributes:
+      label: Actual behavior
+      description: Describe what actually happened.
+      placeholder: ex. Nothing happens when the button is clicked.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain the bug.
+      placeholder: ex. https://go.sctech.mooo.com/openprofile-bug-ss
+    validations:
+      required: false
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Your environment when you came across this bug.
+      value: |
+        **Browser**:
+        **Operating System:**
+        **OpenProfile Version (at the bottom of the website):**
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors.
+      description: Any meaningful errors in the console. (Not required)
+    validations:
+      required: false
