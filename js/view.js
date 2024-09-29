@@ -28,7 +28,7 @@ function loadProfile(userId) {
             github: 'fab fa-github',
             gitlab: 'fab fa-gitlab',
             git: 'fab fa-git',
-            stackoverflow: 'fab fa-stack-oveflow',
+            stackoverflow: 'fab fa-stack-overflow',
             discord: 'fab fa-discord',
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
