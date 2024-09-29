@@ -1,0 +1,42 @@
+name: New Field Request
+description: Request a new field
+labels: enhancement,new-field
+assignees: sctech-tr
+title: [NEW FIELD] 
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking your time to request a new field! Please answer all questions clearly.
+  - type: input
+    id: name
+    attributes:
+      label: Field name
+      description: Provide the name of the field you would like to request.
+      placeholder: ex. GitHub
+    validations:
+      required: true
+  - type: input
+    id: fa-icon
+    attributes:
+      label: FontAwesome icon
+      description: Specify the FontAwesome icon you want to associate with this field. Starts with 'fas' for normal icons, and 'fab' for brand icons.
+      placeholder: ex. fab fa-github
+    validations:
+      required: true
+  - type: input
+    id: why
+    attributes:
+      label: Reason for addition
+      description: Explain why this field should be added. Include any use cases or benefits for users.
+      placeholder: ex. This field allows users users to share their GitHub profile.
+    validations:
+      required: true
+  - type: textarea
+    id: more-information
+    attributes:
+      label: More Information
+      description: Is there anything special we should know?
+      value: "No."
+    validations:
+      required: false
