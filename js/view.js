@@ -25,15 +25,15 @@ function loadProfile(userId) {
             email: 'fas fa-envelope',
             phone: 'fas fa-phone',
             website: 'fas fa-globe',
-            github: 'fab fa-github',
-            gitlab: 'fab fa-gitlab',
+            GitHub: 'fab fa-github',
+            GitLab: 'fab fa-gitlab',
             git: 'fab fa-git',
-            stackoverflow: 'fab fa-stack-overflow',
+            StackOverflow: 'fab fa-stack-overflow',
             discord: 'fab fa-discord',
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
             facebook: 'fab fa-facebook',
-            youtube: 'fab fa-youtube'
+            YouTube: 'fab fa-youtube'
         };
 
         for (const [key, value] of Object.entries(decodedData)) {
