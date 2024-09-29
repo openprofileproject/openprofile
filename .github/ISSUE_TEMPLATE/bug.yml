@@ -20,7 +20,6 @@ body:
     id: steps
     attributes:
       label: Steps to Reproduce
-      description: Specify the FontAwesome icon you want to associate with this field. Starts with 'fas' for normal icons, and 'fab' for brand icons.
       value: |
         1. Describe the first step to reproduce the bug
         2. Describe the second step
@@ -57,9 +56,9 @@ body:
       label: Environment
       description: Your environment when you came across this bug.
       value: |
-        **Browser**:
-        **Operating System:**
-        **OpenProfile Version (at the bottom of the website):**
+        Browser:
+        Operating System:
+        OpenProfile Version (at the bottom of the website):
     validations:
       required: true
   - type: textarea
