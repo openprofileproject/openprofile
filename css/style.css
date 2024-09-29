@@ -76,3 +76,28 @@ nav ul li a:hover {
     background-color: #ddd;
     color: black;
 }
+
+footer {
+    background-color: #2d2d2d;
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.footer-content a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-content a:hover {
+    color: #fff;
+}
