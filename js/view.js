@@ -29,3 +29,12 @@ function loadProfile(userId) {
         }
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user_id');
+    if (userId) {
+        loadProfile(userId);
+    } else {
+        document.getElementById('profile-info').innerHTML = '<p>No user ID provided.</p>';
+    }
+});
