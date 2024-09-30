@@ -85,7 +85,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
         <h2>Generated User ID:</h2>
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
-        <a href="${longUrl}" target="_blank">View Profile</a>
+        <button onclick="window.location.href'${longUrl}'">View Profile</button>
         <button id="generate-short-link">Generate Short Link</button>
     `;
 
