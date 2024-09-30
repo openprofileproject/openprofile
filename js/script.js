@@ -49,7 +49,7 @@ async function generateShortLink(longUrl) {
     const domain = 'opr.ix.tc';
 
     try {
-        const response = await fetch(`https://api.short.io/links`, {
+        const response = await fetch(`https://api.short.io/links/public`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
