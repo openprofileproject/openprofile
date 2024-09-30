@@ -43,6 +43,67 @@ function decodeProfileData(base62Str) {
     return JSON.parse(jsonData);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const profileForm = document.getElementById('profile-form');
+    const shortenButton = document.getElementById('shorten-link');
+    const shortenedLinkDiv = document.getElementById('shortened-link');
+
+    // Handle profile form submission (if you need to process the profile generation)
+    profileForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Process form data and generate the long URL
+        const formData = new FormData(profileForm);
+        const queryParams = new URLSearchParams(formData).toString();
+        const longUrl = `https://openprofile.us.to/view?${queryParams}`;
+        
+        document.getElementById('result').innerText = `Generated Profile URL: ${longUrl}`;
+    });
+
+    // Shorten link on button click
+    shortenButton.addEventListener('click', async function() {
+        const resultDiv = document.getElementById('result');
+        const longUrl = resultDiv.innerText.split('Generated Profile URL: ')[1];
+        
+        if (!longUrl) {
+            shortenedLinkDiv.innerHTML = '<p>Please generate a profile link first.</p>';
+            return;
+        }
+
+        const shortUrl = await createShortLink(longUrl); // Call function to shorten the link
+        shortenedLinkDiv.innerHTML = `Shortened URL: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+    });
+
+    // Short.io API integration for creating short links
+    async function createShortLink(longUrl) {
+        const apiKey = 'pk_3kyuBD0Af5Pz0ZNI';  // Replace with your Short.io API key
+        const domain = 'opr.ix.tc';   // Replace with your Short.io domain (e.g., "example.shrt.io")
+        
+        try {
+            const response = await fetch('https://api.short.io/links', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': apiKey
+                },
+                body: JSON.stringify({
+                    domain: domain,
+                    originalURL: longUrl
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error creating short link');
+            }
+
+            const result = await response.json();
+            return result.shortURL;  // Return the shortened URL
+        } catch (error) {
+            console.error(error);
+            shortenedLinkDiv.innerHTML = '<p>Error generating shortened URL. Please try again.</p>';
+        }
+    }
+});
+
 document.getElementById('profile-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const formData = new FormData(this);
