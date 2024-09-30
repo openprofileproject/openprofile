@@ -43,16 +43,69 @@ function decodeProfileData(base62Str) {
     return JSON.parse(jsonData);
 }
 
-document.getElementById('profile-form').addEventListener('submit', function (e) {
+// Function to generate short link using short.io API
+async function generateShortLink(longUrl) {
+    const apiKey = 'pk_3kyuBD0Af5Pz0ZNI';
+    const domain = 'opr.ix.tc';
+
+    try {
+        const response = await fetch(`https://api.short.io/links`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': apiKey
+            },
+            body: JSON.stringify({
+                domain: domain,
+                originalURL: longUrl
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to generate short link');
+        }
+
+        const data = await response.json();
+        return data.shortURL;
+    } catch (error) {
+        console.error('Error generating short link:', error);
+        return null;
+    }
+}
+
+document.getElementById('profile-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this);
     const profileData = Object.fromEntries(formData.entries());
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
+    const longUrl = `${window.location.origin}/view.html?user_id=${encodedData}`;
+
     resultDiv.innerHTML = `
         <h2>Generated User ID:</h2>
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
-        <a href="view.html?user_id=${encodedData}" target="_blank">View Profile</a>
+        <a href="${longUrl}" target="_blank">View Profile</a>
+        <button id="generate-short-link">Generate Short Link</button>
     `;
+
+    document.getElementById('generate-short-link').addEventListener('click', async function() {
+        this.disabled = true;
+        this.textContent = 'Generating...';
+        
+        const shortUrl = await generateShortLink(longUrl);
+        
+        if (shortUrl) {
+            resultDiv.innerHTML += `
+                <h3>Short Link:</h3>
+                <a href="${shortUrl}" target="_blank">${shortUrl}</a>
+            `;
+        } else {
+            resultDiv.innerHTML += `
+                <p>Failed to generate short link. Please try again later.</p>
+            `;
+        }
+
+        this.remove();
+    });
 });
