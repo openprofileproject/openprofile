@@ -32,7 +32,8 @@ function loadProfile(userId) {
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
             facebook: 'fab fa-facebook',
-            YouTube: 'fab fa-youtube'
+            YouTube: 'fab fa-youtube',
+            LinkTag: 'fas fa-tag'
         };
 
         for (const [key, value] of Object.entries(decodedData)) {
