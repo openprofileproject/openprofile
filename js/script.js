@@ -79,14 +79,15 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const profileData = Object.fromEntries(formData.entries());
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
-    const longUrl = `${window.location.origin}/view.html?user_id=${encodedData}`;
+    const longUrl = `https://openprofile.us.to/view?user_id=${encodedData}`;
 
     resultDiv.innerHTML = `
         <h2>Generated User ID:</h2>
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
-        <button onclick="window.location.href'${longUrl}'">View Profile</button>
-        <button id="generate-short-link">Generate Short Link</button>
+        <button onclick="window.location.href='${longUrl}'">View Profile</button>
+        <button id="generate-short-link">Generate Short Link<br></button>
+        <a href="https://sctech.gitbook.io/openprofile">Learn how to get a custom short URL!</a>
     `;
 
     document.getElementById('generate-short-link').addEventListener('click', async function() {
