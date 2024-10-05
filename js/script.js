@@ -47,7 +47,6 @@ function decodeProfileData(base62Str) {
 async function generateShortLink(longUrl) {
     const apiKey = 'pk_3kyuBD0Af5Pz0ZNI';
     const domain = 'opr.ix.tc';
-
     try {
         const response = await fetch(`https://api.short.io/links/public`, {
             method: 'POST',
@@ -60,11 +59,9 @@ async function generateShortLink(longUrl) {
                 originalURL: longUrl
             })
         });
-
         if (!response.ok) {
             throw new Error('Failed to generate short link');
         }
-
         const data = await response.json();
         return data.shortURL;
     } catch (error) {
@@ -73,23 +70,39 @@ async function generateShortLink(longUrl) {
     }
 }
 
+// Function to show embed instructions
+function showEmbedInstructions(userId) {
+    const apiUrl = `${window.location.origin}/api/screenshot?user_id=${userId}`;
+    const embedInstructions = `
+        <h3>Embed Instructions:</h3>
+        <h4>BBCode:</h4>
+        <pre>[img]${apiUrl}[/img]</pre>
+        <h4>HTML:</h4>
+        <pre>&lt;img src="${apiUrl}" alt="OpenProfile Card" /&gt;</pre>
+        <h4>Markdown:</h4>
+        <pre>![OpenProfile Card](${apiUrl})</pre>
+    `;
+    document.getElementById('embed-instructions').innerHTML = embedInstructions;
+}
+
 document.getElementById('profile-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this);
     const profileData = Object.fromEntries(formData.entries());
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
-    const longUrl = `https://openprofile.us.to/view?user_id=${encodedData}`;
-
+    const longUrl = `${window.location.origin}/view?user_id=${encodedData}`;
     resultDiv.innerHTML = `
         <h2>Generated User ID:</h2>
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <button id="generate-short-link">Generate Short Link<br></button>
+        <button id="generate-short-link">Generate Short Link</button>
+        <button id="show-embed-instructions">Show Embed Instructions</button>
         <a href="https://sctech.gitbook.io/openprofile">Learn how to get a custom short URL!</a>
+        <div id="embed-instructions"></div>
     `;
-
+    
     document.getElementById('generate-short-link').addEventListener('click', async function() {
         this.disabled = true;
         this.textContent = 'Generating...';
@@ -106,7 +119,11 @@ document.getElementById('profile-form').addEventListener('submit', async functio
                 <p>Failed to generate short link. Please try again later.</p>
             `;
         }
+        this.remove();
+    });
 
+    document.getElementById('show-embed-instructions').addEventListener('click', function() {
+        showEmbedInstructions(encodedData);
         this.remove();
     });
 });
