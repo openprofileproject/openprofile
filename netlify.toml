@@ -5,3 +5,10 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions.screenshot]
+  timeout = 30
+  memory = 1024
