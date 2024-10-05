@@ -1,0 +1,16 @@
+{
+  "name": "openprofile",
+  "version": "1.0.0",
+  "description": "OpenProfile Card Generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.4.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^6.14.25"
+  }
+}
