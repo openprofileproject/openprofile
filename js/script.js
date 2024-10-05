@@ -71,16 +71,73 @@ async function generateShortLink(longUrl) {
 }
 
 // Function to show embed instructions
-function showEmbedInstructions(userId) {
-    const apiUrl = `${window.location.origin}/api/screenshot?user_id=${userId}`;
+async function showEmbedInstructions(userId) {
+    // Load html2canvas dynamically
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    
+    // Navigate to the view page
+    const viewUrl = `${window.location.origin}/view.html?user_id=${userId}`;
+    const newWindow = window.open(viewUrl, '_blank');
+    
+    // Wait for the new window to load
+    await new Promise(resolve => {
+        newWindow.onload = resolve;
+    });
+    
+    // Inject the CSS into the new window
+    const style = newWindow.document.createElement('style');
+    style.textContent = `
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .profile {
+            border: 1px solid #444;
+            padding: 20px;
+            margin: auto;
+            max-width: 600px;
+            background-color: #1a1a1a;
+        }
+        .profile-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .profile-item i {
+            margin-right: 10px;
+        }
+    `;
+    newWindow.document.head.appendChild(style);
+    
+    // Wait for styles to be applied
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Capture the screenshot
+    const profileInfo = newWindow.document.getElementById('profile-info');
+    const canvas = await html2canvas(profileInfo, {
+        backgroundColor: '#1a1a1a',
+        scale: 2, // Increase resolution
+        logging: false,
+        useCORS: true
+    });
+    const imageDataUrl = canvas.toDataURL('image/png');
+    
+    // Close the new window
+    newWindow.close();
+    
+    // Display embed instructions
     const embedInstructions = `
         <h3>Embed Instructions:</h3>
         <h4>BBCode:</h4>
-        <pre>[img]${apiUrl}[/img]</pre>
+        <pre>[img]${imageDataUrl}[/img]</pre>
         <h4>HTML:</h4>
-        <pre>&lt;img src="${apiUrl}" alt="OpenProfile Card" /&gt;</pre>
+        <pre>&lt;img src="${imageDataUrl}" alt="OpenProfile Card" /&gt;</pre>
         <h4>Markdown:</h4>
-        <pre>![OpenProfile Card](${apiUrl})</pre>
+        <pre>![OpenProfile Card](${imageDataUrl})</pre>
+        <img src="${imageDataUrl}" alt="Generated Profile Card" style="max-width: 100%; border: 1px solid #444;">
     `;
     document.getElementById('embed-instructions').innerHTML = embedInstructions;
 }
