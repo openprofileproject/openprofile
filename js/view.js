@@ -29,6 +29,7 @@ function loadProfile(userId) {
             GitLab: 'fab fa-gitlab',
             git: 'fab fa-git',
             StackOverflow: 'fab fa-stack-overflow',
+            keyoxide: 'fas fa-key',
             discord: 'fab fa-discord',
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'profile.opr'; // Custom extension
+        a.download = 'openprofile.opr';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
