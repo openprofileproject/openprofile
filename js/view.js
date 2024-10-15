@@ -25,6 +25,7 @@ function loadProfile(userId) {
             email: 'fas fa-envelope',
             phone: 'fas fa-phone',
             website: 'fas fa-globe',
+            GPG: 'fas fa-key',
             GitHub: 'fab fa-github',
             GitLab: 'fab fa-gitlab',
             git: 'fab fa-git',
