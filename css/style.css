@@ -101,3 +101,137 @@ footer {
 .footer-content a:hover {
     color: #fff;
 }
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.profile-avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.profile-bio {
+    color: #666;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-section h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-item:last-child {
+    border-bottom: none;
+}
+
+.profile-item i {
+    width: 24px;
+    margin-right: 1rem;
+    color: #666;
+}
+
+.profile-item a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.profile-item a:hover {
+    text-decoration: underline;
+}
+
+.action-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.action-button:hover {
+    background: #0056b3;
+}
+
+.verification-timestamp {
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.qr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.qr-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+}
+
+.qr-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .profile-section {
+        margin: 1rem;
+    }
+    
+    .profile-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-item i {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+}
