@@ -1,21 +1,37 @@
-function loadProfile(userId) {
-    console.log("Loading profile for userId:", userId);
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize UI elements
     const profileInfo = document.getElementById('profile-info');
     const shareButton = document.getElementById('share-button');
     const qrButton = document.getElementById('qr-button');
-
-    if (!userId) {
-        profileInfo.innerHTML = '<p>No user ID provided.</p>';
-        return;
+    
+    // If the URL has a profile ID, load it automatically
+    const urlParams = new URLSearchParams(window.location.search);
+    const profileId = urlParams.get('id');
+    if (profileId) {
+        loadProfile(profileId);
     }
 
-    try {
-        const decodedData = decodeProfileData(userId);
-        console.log("Decoded data:", decodedData);
-
-        if (typeof decodedData !== 'object' || decodedData === null) {
-            throw new Error('Decoded data is not an object');
+    // Main profile loading function
+    window.loadProfile = function(userId) {
+        if (!profileInfo) {
+            console.error('Profile info element not found');
+            return;
         }
+
+        console.log("Loading profile for userId:", userId);
+
+        if (!userId) {
+            profileInfo.innerHTML = '<p>No user ID provided.</p>';
+            return;
+        }
+
+        try {
+            const decodedData = decodeProfileData(userId);
+            console.log("Decoded data:", decodedData);
+
+            if (typeof decodedData !== 'object' || decodedData === null) {
+                throw new Error('Decoded data is not an object');
+            }
 
         // Clear previous profile data
         profileInfo.innerHTML = '';
@@ -259,7 +275,25 @@ function loadProfile(userId) {
         console.error('Error loading profile:', error);
         profileInfo.innerHTML = '<p>Error loading profile data. Please try again.</p>';
     }
+};
+
+// Helper function to check if elements exist
+function checkElements() {
+    const missing = [];
+    if (!profileInfo) missing.push('profile-info');
+    if (!shareButton) missing.push('share-button');
+    if (!qrButton) missing.push('qr-button');
+    
+    if (missing.length > 0) {
+        console.warn('Missing DOM elements:', missing.join(', '));
+    }
 }
+
+// Run check in development environment
+if (process.env.NODE_ENV !== 'production') {
+    checkElements();
+}
+});
 
 // Helper functions for sanitization
 function sanitizeText(text) {
