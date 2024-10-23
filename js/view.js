@@ -98,9 +98,6 @@ function loadProfile(userId) {
 
 // Load SparkMD5 for hashing the email
 document.addEventListener('DOMContentLoaded', function() {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js'; // Load SparkMD5 from CDN
-    document.head.appendChild(script);
 
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('user_id');
