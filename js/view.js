@@ -12,7 +12,7 @@ function loadProfile(userId) {
     }
 
     try {
-        const decodedData = decodeProfileData(userId); // Base62 decode
+        const decodedData = decodeProfileData(userId);
         console.log("Decoded data:", decodedData);
 
         if (typeof decodedData !== 'object' || decodedData === null) {
@@ -21,22 +21,24 @@ function loadProfile(userId) {
 
         profileInfo.innerHTML = ''; // Clear any previous profile data
 
-        const email = decodedData.email; // Extract email
-        if (email) {
-            console.log("Email:", email); // Log email
-            
-            // Get MD5 hash of the email and construct Libravatar URL
-            const emailHash = md5(email);
-            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&d=identicon`; // Avatar with size 200px
+        // Create a container for all profile items
+        const profileItemsContainer = document.createElement('div');
+        profileItemsContainer.className = 'profile-items-container';
 
-            // Check if the avatar URL returns a valid image
+        const email = decodedData.email;
+        if (email) {
+            console.log("Email:", email);
+            
+            const emailHash = md5(email);
+            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&d=identicon`;
+
             const img = new Image();
             img.src = avatarUrl;
             img.onload = function() {
-                // If the image loads successfully, append it to the profileInfo
                 img.alt = 'Profile Avatar';
-                img.className = 'profile-avatar'; // TODO: Add styles to avatars
-                profileInfo.appendChild(img); // Add the avatar at the top
+                img.className = 'profile-avatar';
+                // Insert the avatar at the beginning of profileInfo
+                profileInfo.insertBefore(img, profileInfo.firstChild);
             };
             img.onerror = function() {
                 console.log("No Libravatar found for this email.");
@@ -44,6 +46,7 @@ function loadProfile(userId) {
         } else {
             console.log("No email found, skipping Libravatar.");
         }
+
         const iconMap = {
             name: 'fas fa-user',
             surname: 'fas fa-user-check',
@@ -69,7 +72,7 @@ function loadProfile(userId) {
 
         for (const [key, value] of Object.entries(decodedData)) {
             if (value && typeof value === 'string') {
-                const iconClass = iconMap[key] || 'fas fa-info-circle'; // Default icon
+                const iconClass = iconMap[key] || 'fas fa-info-circle';
                 const div = document.createElement('div');
                 div.className = 'profile-item';
                 
@@ -82,11 +85,14 @@ function loadProfile(userId) {
                 span.textContent = `${capitalizedKey}: ${value}`;
                 div.appendChild(span);
                 
-                profileInfo.appendChild(div);
+                profileItemsContainer.appendChild(div);
             }
         }
 
-        if (profileInfo.children.length === 0) {
+        // Add the profile items container after any existing content (avatar)
+        profileInfo.appendChild(profileItemsContainer);
+
+        if (profileItemsContainer.children.length === 0 && !email) {
             profileInfo.innerHTML = '<p>No valid profile data found.</p>';
         }
     } catch (error) {
