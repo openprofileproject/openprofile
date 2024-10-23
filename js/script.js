@@ -79,7 +79,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const profileData = Object.fromEntries(formData.entries());
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
-    const longUrl = `https://openprofile.us.to/view?user_id=${encodedData}`;
+    const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;
 
     resultDiv.innerHTML = `
         <h2>Generated User ID:</h2>
