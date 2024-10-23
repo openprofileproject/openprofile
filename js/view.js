@@ -1,3 +1,7 @@
+function md5(email) {
+    return SparkMD5.hash(email.trim().toLowerCase());
+}
+
 function loadProfile(userId) {
     console.log("Loading profile for userId:", userId);
     const profileInfo = document.getElementById('profile-info');
@@ -16,6 +20,30 @@ function loadProfile(userId) {
         }
 
         profileInfo.innerHTML = ''; // Clear any previous profile data
+
+        const email = decodedData.email; // Extract email
+        if (email) {
+            console.log("Email:", email); // Log email
+            
+            // Get MD5 hash of the email and construct Libravatar URL
+            const emailHash = md5(email);
+            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&d=identicon`; // Avatar with size 200px
+
+            // Check if the avatar URL returns a valid image
+            const img = new Image();
+            img.src = avatarUrl;
+            img.onload = function() {
+                // If the image loads successfully, append it to the profileInfo
+                img.alt = 'Profile Avatar';
+                img.className = 'profile-avatar'; // TODO: Add styles to avatars
+                profileInfo.appendChild(img); // Add the avatar at the top
+            };
+            img.onerror = function() {
+                console.log("No Libravatar found for this email.");
+            };
+        } else {
+            console.log("No email found, skipping Libravatar.");
+        }
         const iconMap = {
             name: 'fas fa-user',
             surname: 'fas fa-user-check',
@@ -67,7 +95,13 @@ function loadProfile(userId) {
     }
 }
 
+
+// Load SparkMD5 for hashing the email
 document.addEventListener('DOMContentLoaded', function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js'; // Load SparkMD5 from CDN
+    document.head.appendChild(script);
+
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('user_id');
 
@@ -109,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const decodedData = decodeProfileData(userId);
-        const jsonData = JSON.stringify(decodedData, null, 2); // Pretty print JSON
+        const jsonData = JSON.stringify(decodedData, null, 2);
         const blob = new Blob([jsonData], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         
@@ -122,3 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         URL.revokeObjectURL(url); // Clean up the URL
     });
 });
+
+
+// congrats if you made this far
+// little easter egg from the devs :)
