@@ -101,3 +101,13 @@ footer {
 .footer-content a:hover {
     color: #fff;
 }
+
+.profile-avatar {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+}
+
+.profile-items-container {
+    margin-top: 20px;
+}

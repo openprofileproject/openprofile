@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
     <title>OpenProfile Card</title>
 </head>
 <body>
@@ -14,21 +15,21 @@
             <li><a href="view.html">View</a></li>
         </ul>
     </nav>
-
+    <h1>User Profile</h1>
     <div class="profile">
-        <h1>User Profile</h1>
         <div id="profile-info" aria-live="polite"></div>
         <button id="load-file">Load Profile from File</button>
         <input type="file" id="file-input" accept=".opr" style="display: none;">
         <button id="save-file">Save Profile as .opr</button>
     </div>
 
+    <!--- TODO: qr support <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> --->
     <script src="js/script.js"></script>
     <script src="js/view.js"></script>
 
     <footer>
         <div class="footer-content">
-            <p>(ↄ) OpenProfile 2024 v1.2 - <a href="privacy.html">Privacy Policy</a> - <a href="https://github.com/openprofileproject/openprofile">Source</a></p>
+            <p>(ↄ) OpenProfile 2024 v2.0 - <a href="privacy.html">Privacy Policy</a> - <a href="https://github.com/openprofileproject/openprofile">Source</a></p>
         </div>
     </footer>
 </body>
