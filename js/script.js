@@ -43,36 +43,6 @@ function decodeProfileData(base62Str) {
     return JSON.parse(jsonData);
 }
 
-// Function to generate short link using short.io API
-async function generateShortLink(longUrl) {
-    const apiKey = 'pk_3kyuBD0Af5Pz0ZNI';
-    const domain = 'opr.ix.tc';
-
-    try {
-        const response = await fetch(`https://api.short.io/links/public`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': apiKey
-            },
-            body: JSON.stringify({
-                domain: domain,
-                originalURL: longUrl
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to generate short link');
-        }
-
-        const data = await response.json();
-        return data.shortURL;
-    } catch (error) {
-        console.error('Error generating short link:', error);
-        return null;
-    }
-}
-
 document.getElementById('profile-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this);
@@ -86,27 +56,6 @@ document.getElementById('profile-form').addEventListener('submit', async functio
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <button id="generate-short-link">Generate Short Link<br></button>
-        <a href="https://sctech.gitbook.io/openprofile">Learn how to get a custom short URL!</a>
+        <a href="https://docs.sctech.localplayer.dev/openprofile/for-everyone/openprofile+">Become an OpenProfile+ member!</a>
     `;
-
-    document.getElementById('generate-short-link').addEventListener('click', async function() {
-        this.disabled = true;
-        this.textContent = 'Generating...';
-        
-        const shortUrl = await generateShortLink(longUrl);
-        
-        if (shortUrl) {
-            resultDiv.innerHTML += `
-                <h3>Short Link:</h3>
-                <a href="${shortUrl}" target="_blank">${shortUrl}</a>
-            `;
-        } else {
-            resultDiv.innerHTML += `
-                <p>Failed to generate short link. Please try again later.</p>
-            `;
-        }
-
-        this.remove();
-    });
 });
