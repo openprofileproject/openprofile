@@ -30,21 +30,25 @@ function loadProfile(userId) {
             console.log("Email:", email);
             
             const emailHash = md5(email);
-            const defaultAvatar = decodedData.DefaultAvatar || 'retro'; // not defaultAvatar, DefaultAvatar because it automatically capitalizes the first letter
+            // not defaultAvatar, DefaultAvatar because it automatically capitalizes the first letter
+            const defaultAvatar = decodedData.DefaultAvatar || '404';
             const validAvatars = ['identicon', 'retro', 'mm', 'pagan', 'monsterid', 'robohash', '404'];
             const avatarType = validAvatars.includes(defaultAvatar) ? defaultAvatar : 'retro';
             const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&default=${avatarType}`;
 
             const img = new Image();
             img.src = avatarUrl;
+            img.alt = 'Profile Avatar';
+            img.className = 'profile-avatar';
             img.onload = function() {
-                img.alt = 'Profile Avatar';
-                img.className = 'profile-avatar';
                 // Insert the avatar at the beginning of profileInfo
                 profileInfo.insertBefore(img, profileInfo.firstChild);
             };
             img.onerror = function() {
                 console.log("No Libravatar found for this email.");
+                if (img.parentNode) {
+                    img.parentNode.removeChild(img);
+                }
             };
         } else {
             console.log("No email found, skipping Libravatar.");
