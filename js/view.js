@@ -66,6 +66,7 @@ function loadProfile(userId) {
             StackOverflow: 'fab fa-stack-overflow',
             keyoxide: 'fas fa-key',
             discord: 'fab fa-discord',
+            linkedin: 'fab fa-linkedin',
             instagram: 'fab fa-instagram',
             twitter: 'fab fa-twitter',
             facebook: 'fab fa-facebook',
