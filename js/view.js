@@ -30,7 +30,10 @@ function loadProfile(userId) {
             console.log("Email:", email);
             
             const emailHash = md5(email);
-            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&d=identicon`;
+            const defaultAvatar = decodedData.defaultAvatar || 'retro';
+            const validAvatars = ['identicon', 'retro', 'mm', 'pagan', 'monsterid', 'robohash', '404'];
+            const avatarType = validAvatars.includes(defaultAvatar) ? defaultAvatar : 'retro';
+            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&default=${avatarType}`;
 
             const img = new Image();
             img.src = avatarUrl;
@@ -152,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'openprofile.opr';
+        a.download = 'openprofile.json';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
