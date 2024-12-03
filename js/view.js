@@ -74,8 +74,8 @@ function loadProfile(userId) {
         };
 
         for (const [key, value] of Object.entries(decodedData)) {
-            if (value && typeof value === 'string') {
-                const iconClass = iconMap[key] || 'fas fa-info-circle';
+            if (key !== 'defaultAvatar' && value && typeof value === 'string') {
+            const iconClass = iconMap[key] || 'fas fa-info-circle';
                 const div = document.createElement('div');
                 div.className = 'profile-item';
                 
