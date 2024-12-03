@@ -37,14 +37,17 @@ function loadProfile(userId) {
 
             const img = new Image();
             img.src = avatarUrl;
+            img.alt = 'Profile Avatar';
+            img.className = 'profile-avatar';
             img.onload = function() {
-                img.alt = 'Profile Avatar';
-                img.className = 'profile-avatar';
                 // Insert the avatar at the beginning of profileInfo
                 profileInfo.insertBefore(img, profileInfo.firstChild);
             };
             img.onerror = function() {
                 console.log("No Libravatar found for this email.");
+                if (img.parentNode) {
+                    img.parentNode.removeChild(img);
+                }
             };
         } else {
             console.log("No email found, skipping Libravatar.");
