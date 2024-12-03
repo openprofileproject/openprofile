@@ -46,7 +46,12 @@ function decodeProfileData(base62Str) {
 document.getElementById('profile-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this);
-    const profileData = Object.fromEntries(formData.entries());
+    const formEntries = Object.fromEntries(formData.entries());
+    delete formEntries['default-avatar']; // don't make it part of formEntries, since it is handled separately
+    const profileData = {
+        ...formEntries,
+        defaultAvatar: document.getElementById('default-avatar') ? document.getElementById('default-avatar').value : '404'
+    };
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
     const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;

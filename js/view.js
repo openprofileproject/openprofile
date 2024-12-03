@@ -30,7 +30,10 @@ function loadProfile(userId) {
             console.log("Email:", email);
             
             const emailHash = md5(email);
-            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&d=identicon`;
+            const defaultAvatar = decodedData.DefaultAvatar || 'retro'; // not defaultAvatar, DefaultAvatar because it automatically capitalizes the first letter
+            const validAvatars = ['identicon', 'retro', 'mm', 'pagan', 'monsterid', 'robohash', '404'];
+            const avatarType = validAvatars.includes(defaultAvatar) ? defaultAvatar : 'retro';
+            const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&default=${avatarType}`;
 
             const img = new Image();
             img.src = avatarUrl;
@@ -71,8 +74,8 @@ function loadProfile(userId) {
         };
 
         for (const [key, value] of Object.entries(decodedData)) {
-            if (value && typeof value === 'string') {
-                const iconClass = iconMap[key] || 'fas fa-info-circle';
+            if (key !== 'defaultAvatar' && value && typeof value === 'string') {
+            const iconClass = iconMap[key] || 'fas fa-info-circle';
                 const div = document.createElement('div');
                 div.className = 'profile-item';
                 
@@ -152,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'openprofile.opr';
+        a.download = 'openprofile.json';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
