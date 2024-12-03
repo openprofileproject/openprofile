@@ -46,7 +46,10 @@ function decodeProfileData(base62Str) {
 document.getElementById('profile-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this);
-    const profileData = Object.fromEntries(formData.entries());
+    const profileData = {
+        ...Object.fromEntries(formData.entries()),
+        defaultAvatar: document.getElementById('default-avatar') ? document.getElementById('default-avatar').value : '404'
+    };
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
     const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;

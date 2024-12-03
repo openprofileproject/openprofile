@@ -18,6 +18,16 @@
     <div class="container">
         <h1>OpenProfile Card Generator</h1>
         <form id="profile-form">
+            <label for="default-avatar">Default Avatar:</label>
+            <select name="default-avatar" id="default-avatar">
+                <option value="identicon">identicon</option>
+                <option value="retro">retro</option>
+                <option value="mm">mm (basic)</option>
+                <option value="pagan">pagan</option>
+                <option value="monsterid">monsterid</option>
+                <option value="robohash">robohash</option>
+                <option value="404">404 (no avatar)</option>
+            </select>
             <input type="text" name="name" placeholder="Name" required>
             <input type="text" name="surname" placeholder="Surname">
             <input type="text" name="bio" placeholder="Bio">
