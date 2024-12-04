@@ -110,16 +110,20 @@ function loadProfile(userId) {
 }
 
 
-// Load SparkMD5 for hashing the email
 document.addEventListener('DOMContentLoaded', function() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('user_id');
+    const isBadge = urlParams.get('plus');
 
     if (userId) {
         loadProfile(userId);
     } else {
         document.getElementById('profile-info').innerHTML = '<p>No user ID provided.</p>';
+    }
+
+    if (isBadge === "true") {
+        document.getElementById('badge-container').innerHTML = '<img onclick="window.location.href=\'https://openprofile.is-cool.dev/openprofileplus-verify-db.txt\'" src="https://img.shields.io/badge/OpenProfile+-This%20user%20is%20an%20OpenProfile+%20member.%20(click%20to%20verify)-gold" alt="OpenProfile+ Badge">';
     }
 
     // Load profile from file
@@ -145,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Save profile as .opr file
+    // Save profile as .json file
     document.getElementById('save-file').addEventListener('click', function() {
         const userId = new URLSearchParams(window.location.search).get('user_id');
         if (!userId) {
