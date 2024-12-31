@@ -28,10 +28,9 @@ function loadProfile(userId) {
         const email = decodedData.email;
         if (email) {
             console.log("Email:", email);
-            
             const emailHash = md5(email);
-            // not defaultAvatar, DefaultAvatar because it automatically capitalizes the first letter
-            const defaultAvatar = decodedData.DefaultAvatar || '404';
+            console.log("Email hash:", emailHash);
+            const defaultAvatar = decodedData.defaultAvatar || '404';
             const validAvatars = ['identicon', 'retro', 'mm', 'pagan', 'monsterid', 'robohash', '404'];
             const avatarType = validAvatars.includes(defaultAvatar) ? defaultAvatar : 'retro';
             const avatarUrl = `https://seccdn.libravatar.org/avatar/${emailHash}?s=200&default=${avatarType}`;
@@ -44,8 +43,8 @@ function loadProfile(userId) {
                 // Insert the avatar at the beginning of profileInfo
                 profileInfo.insertBefore(img, profileInfo.firstChild);
             };
-            img.onerror = function() {
-                console.log("No Libravatar found for this email.");
+            img.onerror = function() { // img.onerror should be our 404 case
+                console.log("No Libravatar found for this email. (404)");
                 if (img.parentNode) {
                     img.parentNode.removeChild(img);
                 }
@@ -89,7 +88,7 @@ function loadProfile(userId) {
                 div.appendChild(icon);
                 
                 const span = document.createElement('span');
-                const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1); // i have a feeling this was a major mistake
                 span.textContent = `${capitalizedKey}: ${value}`;
                 div.appendChild(span);
                 
