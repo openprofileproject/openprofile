@@ -1,0 +1,40 @@
+name: Feature Request
+description: Request new functionality and features
+labels: ["enhancement"]
+assignees: sctech-tr
+type: Feature
+title: "[FEATURE] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking your time to request new features! Please answer all questions clearly.
+  - type: input
+    id: name
+    attributes:
+      label: Feature name
+      description: Provide the name of the feature you would like to request.
+    validations:
+      required: true
+  - type: textarea
+    id: explain
+    attributes:
+      label: Explanation
+      description: Please explain how this new feature works.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Reason for addition
+      description: Explain why this feature should be added. Include any use cases or benefits for users.
+    validations:
+      required: true
+  - type: textarea
+    id: more-information
+    attributes:
+      label: More Information
+      description: Is there anything special we should know?
+      value: "No."
+    validations:
+      required: false
