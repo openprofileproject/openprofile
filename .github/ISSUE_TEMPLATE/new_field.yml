@@ -2,6 +2,7 @@ name: New Field Request
 description: Request a new field
 labels: ["enhancement", "new field"]
 assignees: sctech-tr
+type: Feature
 title: "[NEW FIELD] "
 body:
   - type: markdown
