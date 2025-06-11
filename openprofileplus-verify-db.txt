@@ -1,5 +1,0 @@
-This file contains the OpenProfile+ membership verification information. You can check the membership status of a user by looking up their OpenProfile+ username in this file.
-These usernames are verified members of OpenProfile+: (a username is the end of a https://opr.ix.tc/ URL)
-
-sctech
-openprofile
