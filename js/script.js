@@ -61,6 +61,5 @@ document.getElementById('profile-form').addEventListener('submit', async functio
         <p>${encodedData}</p>
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <a href="https://docs.sctech.localplayer.dev/openprofile/for-everyone/openprofile+">Become an OpenProfile+ member!</a>
     `;
 });
