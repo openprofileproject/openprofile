@@ -57,9 +57,8 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;
 
     resultDiv.innerHTML = `
-        <h2>Generated User ID:</h2>
-        <p>${encodedData}</p>
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
+        <br><a href="https://docs.sctech.localplayer.dev">Get a sharable URL!</a>
     `;
 });
