@@ -47,7 +47,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     e.preventDefault();
     const formData = new FormData(this);
     const formEntries = Object.fromEntries(formData.entries());
-    delete formEntries['default-avatar']; // don't make it part of formEntries, since it is handled separately
+    delete formEntries['default-avatar']; // don't make it part of formEntries, since it is handled separately (i am an idiot)
     const profileData = {
         ...formEntries,
         defaultAvatar: document.getElementById('default-avatar') ? document.getElementById('default-avatar').value : '404'
@@ -55,10 +55,39 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
     const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;
-
+    const workerUrl = "https://openprofile-linkshortener.gamerselimiko.workers.dev/";
     resultDiv.innerHTML = `
         <h3>View Profile:</h3>
-        <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <br><a href="https://docs.sctech.localplayer.dev">Get a sharable URL!</a>
+        <button onclick="window.location.href='${longUrl}'">View Profile</button><br>
+        <h3>Create short link for your profile:</h3>
+        <input id="shortenSlug" placeholder="Enter username (opr.k.vu/username)" /><br>
+        <button id="shortenBtn">Create Short Link</button>
+        <p id="shortenResult"></p>
     `;
+    document.getElementById("shortenBtn").addEventListener("click", async () => {
+      const shortenSlug = document.getElementById("shortenSlug").value.trim();
+      const shortenResult = document.getElementById("shortenResult");
+
+      // if (!longUrl) return (shortenResult.textContent = "Please enter a URL."); // this wont happen ik
+      shortenResult.textContent = "Creating short link...";
+
+      try {
+        const res = await fetch(workerUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ longUrl, shortenSlug }),
+        });
+
+        const shortenData = await res.json();
+
+        if (!res.ok) {
+          shortenResult.textContent = "Error: " + (shortenData.description || shortenData.error || "Unknown error");
+          return;
+        }
+
+        result.innerHTML = `Short link: <a href="${data.shortURL}" target="_blank">${data.shortURL}</a>`;
+        } catch (err) {
+        result.textContent = "Network error: " + err.message;
+      }
+    });
 });
