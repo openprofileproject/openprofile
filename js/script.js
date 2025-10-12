@@ -59,6 +59,6 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     resultDiv.innerHTML = `
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <br><a href="https://docs.sctech.localplayer.dev">Get a sharable URL!</a>
+        <br><a href="https://docs.sctech.qzz.io/openprofile">Get a sharable, short URL!</a>
     `;
 });
