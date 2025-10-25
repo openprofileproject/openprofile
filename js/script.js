@@ -54,11 +54,11 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     };
     const encodedData = encodeProfileData(profileData);
     const resultDiv = document.getElementById('result');
-    const longUrl = `https://openprofile.is-cool.dev/view?user_id=${encodedData}`;
+    const longUrl = `https://openprofile.dpdns.org/view?user_id=${encodedData}`;
 
     resultDiv.innerHTML = `
         <h3>View Profile:</h3>
         <button onclick="window.location.href='${longUrl}'">View Profile</button>
-        <br><a href="https://docs.sctech.qzz.io/openprofile">Get a sharable, short URL!</a>
+        <br><a href="https://docs.sctech.qzz.io/openprofile/guides/shortened-links">Get a sharable, short URL!</a>
     `;
 });
